@@ -1,0 +1,10 @@
+streamlit
+pandas
+numpy
+scikit-learn
+joblib
+nltk
+umap-learn
+sentence-transformers
+gensim
+requests
