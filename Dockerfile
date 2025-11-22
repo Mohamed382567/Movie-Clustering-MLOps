@@ -1,16 +1,17 @@
-FROM python:3.11-slim
+FROM python:3.11-alpine
 
-RUN apt-get update && apt-get install -y \
-    build-essential \
+RUN apk update && apk add --no-cache \
+    build-base \
     curl \
     git \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/cache/apk/*
 
 WORKDIR /app
 
 RUN pip install --upgrade pip
 
 COPY requirements.txt .
+# استخدام --no-cache-dir يقلل من المساحة أثناء البناء
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
