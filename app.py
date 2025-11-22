@@ -118,33 +118,69 @@ with st.sidebar:
             st.markdown("""
             **K-Means Groups (Balanced):**
             - **Cluster 0:** Profit-Driven Comedy/Action Mix (Commercial focus).
+              Numerical Profile: Average quality, slightly positive profit, older movies on average.
+              Characteristics: A large, commercially focused group. Defined by a slightly positive profit margin (despite moderate popularity) and a broad mix of popular genres like Comedy, Thriller, and Action. These are solid, mainstream films that consistently make money.
             - **Cluster 1:** Low-Performing Dramas (Recent, low revenue).
+              Numerical Profile: Sub-average quality, negative profit, recent. Very low popularity.
+              Characteristics: These are recent films, mainly Dramas and Romances, that struggle to gain traction (very low popularity) and are generally losing money (-0.016 profit ratio). They often represent a large chunk of newly released, quickly forgotten titles.
             - **Cluster 2:** Underperformers (Newer movies, below average ratings).
+              Numerical Profile: Lower quality, negative profit, newest films on average.
+              Characteristics: Represents the very newest films in the dataset (highest mean release year). They are defined by poor performance, slightly lower quality than Cluster 1, and low visibility.
             - **Cluster 3:** **Blockbuster Hits** (High Revenue, High Quality).
+              Numerical Profile: Highest quality (0.501), highest popularity (0.718), relatively recent.
+              Characteristics: The "Mega-Hit" category. These films combine high critical acclaim with massive public interest, often dominated by large-scale Action, Adventure, and Thriller genres. This is the goal for major studio tentpoles.
             - **Cluster 4:** Niche/Cult Films (Critically panned but profitable).
+              Numerical Profile: Extremely low quality (-1.169), but surprisingly positive profit (0.027), very recent.
+              Characteristics: This cluster is defined by the sharp contradiction between high negative critical perception (worst quality score) and a positive profit ratio. These are often low-budget, niche films (like some horror or direct-to-video titles) that achieve a small profit despite negative reviews.
             """)
             
         elif model_choice == "GMM":
             st.markdown("""
             **GMM Groups (Probabilistic):**
             - **Cluster 0:** Classic Cinema (High profit, older release years).
+              Numerical Profile: High quality, highest profit ratio (0.107), but extremely old (-1.379). Low current popularity is expected due to age.
+              Characteristics: This cluster separates older, classic films (like '42nd Street' or 'The Nun's Story') that were highly successful and critically acclaimed in their time, resulting in a high historical profit ratio. The model isolated them based on the low release year Z-score.
             - **Cluster 1:** Low-Performing Dramas.
+              Numerical Profile: Sub-average quality, negative profit, recent. Very low popularity.
+              Characteristics: Similar to the K-Means result. These are recent titles, mostly Dramas and Romances, that struggle commercially (negative profit ratio) and critically (sub-average rating). They are quickly forgotten releases.
             - **Cluster 2:** Underperformers.
+              Numerical Profile: Lower quality, negative profit, newest films on average.
+              Characteristics: Represents the newest batch of released films that performed poorly on average. Defined by lower mean quality and a moderate lack of popularity, struggling to perform in the market.
             - **Cluster 3:** **Commercial Hits** (High popularity mix).
+              Numerical Profile: Above average quality, highest current popularity (0.332), recent.
+              Characteristics: This is the large "Mainstream Hit" category. Defined primarily by high popularity and a strong presence across all major commercial genres (Drama, Action, Comedy, Thriller). These are the films that dominate the public conversation.
             - **Cluster 4:** Niche Profitable.
+              Numerical Profile: Extremely low quality (-1.180), yet positive profit (0.027), recent.
+              Characteristics: A highly contradictory cluster. Films here receive terrible reviews (worst quality score) but achieve a positive profit margin. This points to low-budget, niche, or genre-specific films (like specific horror or low-budget comedies) that are cost-effective despite poor critical reception.
             """)
             
         elif model_choice == "HDBSCAN":
             st.markdown("""
             **HDBSCAN Groups (Density-Based):**
-            - **Label -1:** **Noise / Outliers** (Unique movies that don't fit standard patterns).
+            - **Label -1:** **Noise / Outliers** (Unique movies that don't fit standard patterns):
+              Numerical Profile: vote_average (-0.416), popularity (-0.485), release_year (-0.585) - Generally below average and older.
+              Description: These are points that the clustering algorithm couldn't reliably assign to any main group. They often include extremely unique or corrupted data entries.
             - **Cluster 0:** Standard Commercial Films.
+              Numerical Profile: Low quality and popularity, but average profit, relatively recent.
+              Characteristics: These are modern films, mostly dramas and comedies, that perform poorly in terms of popularity but maintain an average critical rating. They are generally forgettable films not capturing wide public attention.
             - **Cluster 1:** Extremely Poor Quality Outliers.
+              Numerical Profile: Extremely low quality (-1.637), very low popularity, older.
+              Characteristics: This cluster consists of some of the worst-rated films in the dataset, often cheap horror or generic independent films that barely register a score.
             - **Cluster 2:** High-Performance Blockbusters.
+              Numerical Profile: Above average quality (0.185), high popularity (0.244), slightly positive profit.
+              Characteristics: This is the largest, most successful, and most diverse group. It represents popular blockbuster and major studio releases that are well-received (above average) and widely consumed across all major genres (Action, Drama, Comedy, Thriller). This is the 'Hit' category.
             - **Cluster 3:** Genre-Specific Niche (e.g., Horror/Thriller).
+              Numerical Profile: Highest quality (0.254), highest profit ratio (0.045), low popularity, but relatively recent.
+              Characteristics: These are critically acclaimed films (highest mean vote average) that managed to generate good relative profit, often being niche dramas or independent comedies with strong word-of-mouth rather than mass market blockbusters.
             - **cluster 4:** Classic (Older) Cinema Mix.
+              Numerical Profile: Very old (-2.086), low popularity, average quality.
+              Characteristics: Defined purely by age. These are older, non-recent films (predominantly pre-2000s) that mostly belong to the Drama or Romance genres. Their current low popularity is expected due to their age.
             - **cluster 5:** New Releases, Sub-Average Drama Focus.
+              Numerical Profile: Below average quality (-0.183), low popularity, very recent (0.268).
+              Characteristics: This group focuses on recent releases (high Z-Score for release year) that generally fail to impress critically or popularly, often filling the market with generic dramas and romantic comedies.
             - **cluster 6:** Lowest Rated, Unpopular Duds.
+              Numerical Profile: The absolute lowest quality (-4.736), lowest popularity, older.
+              Characteristics: These are highly niche or poorly made films that have extremely low critic/user scores, making them outliers on the low end of the quality scale.
             """)
     
     st.markdown("---")
@@ -245,3 +281,4 @@ if st.button("🔮 Predict Cluster"):
             sec_name = selected_model_data['names'].get(sec_label, f"Cluster {sec_label}")
 
             st.text(f"Closest Alternative: {sec_name} (Distance: {dist_map[1][0]:.4f})")
+
