@@ -139,9 +139,12 @@ with st.sidebar:
             **HDBSCAN Groups (Density-Based):**
             - **Label -1:** **Noise / Outliers** (Unique movies that don't fit standard patterns).
             - **Cluster 0:** Standard Commercial Films.
-            - **Cluster 1:** Low-Budget / Indie Projects.
+            - **Cluster 1:** Extremely Poor Quality Outliers.
             - **Cluster 2:** High-Performance Blockbusters.
             - **Cluster 3:** Genre-Specific Niche (e.g., Horror/Thriller).
+            - **cluster 4:** Classic (Older) Cinema Mix.
+            - **cluster 5:** New Releases, Sub-Average Drama Focus.
+            - **cluster 6:** Lowest Rated, Unpopular Duds.
             """)
     
     st.markdown("---")
@@ -240,4 +243,5 @@ if st.button("🔮 Predict Cluster"):
             sec_idx = dist_map[1][1]
             sec_label = label_map[sec_idx]
             sec_name = selected_model_data['names'].get(sec_label, f"Cluster {sec_label}")
+
             st.text(f"Closest Alternative: {sec_name} (Distance: {dist_map[1][0]:.4f})")
