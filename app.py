@@ -60,6 +60,15 @@ def load_system():
     # Ensure the file is downloaded before attempting to load it
     model_path = download_file_if_missing() 
     
+    # --- JEDI MIND TRICK: Numpy 2.0 to 1.x Patch ---
+    import sys
+    import numpy.core
+    sys.modules['numpy._core'] = numpy.core
+    sys.modules['numpy._core.multiarray'] = numpy.core.multiarray
+    sys.modules['numpy._core.umath'] = numpy.core.umath
+    sys.modules['numpy._core.numeric'] = numpy.core.numeric
+    # -----------------------------------------------
+    
     # Load the system from the local file
     artifacts = joblib.load(model_path)
     
