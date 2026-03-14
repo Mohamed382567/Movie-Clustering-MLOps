@@ -12,7 +12,7 @@ from nltk.tokenize import word_tokenize
 # --- Configuration for Large File Download ---
 FILE_PATH = 'all_models_system.joblib'
 # 🛑 IMPORTANT: REPLACE THIS URL WITH YOUR DIRECT MODEL FILE DOWNLOAD LINK!
-DOWNLOAD_URL = 'https://drive.google.com/file/d/1qazjWf1CpuY_zEb7lbd3_-lk3ftGXkvh/view?usp=sharing' 
+DOWNLOAD_URL = 'https://drive.google.com/uc?export=download&id=1qazjWf1CpuY_zEb7lbd3_-lk3ftGXkvh' 
 
 
 def download_file_if_missing():
