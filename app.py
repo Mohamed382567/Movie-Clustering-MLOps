@@ -4,6 +4,7 @@ import numpy as np
 import joblib
 import os
 import requests # New library for downloading files
+import gensim
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import euclidean_distances
 import nltk
