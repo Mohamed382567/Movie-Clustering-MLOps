@@ -1,6 +1,9 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+np.infty = np.inf
+import math
+np.math = math
 import joblib
 import os
 import requests # New library for downloading files
