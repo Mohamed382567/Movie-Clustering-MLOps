@@ -5,6 +5,7 @@ pandas==2.2.2
 joblib==1.4.2
 gensim==4.4.0
 umap-learn==0.5.5
+pynndescent==0.5.11
 scipy==1.13.1
 sentence-transformers==3.0.0
 requests
